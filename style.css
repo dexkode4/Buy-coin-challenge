@@ -1,0 +1,311 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Roboto", sans-serif;
+}
+
+html {
+	font-size: 62%;
+}
+
+
+.header {
+	width: 100%;
+}
+
+.header__top {
+	display: flex;
+	justify-content: space-between;
+}
+
+.left > * {
+	margin-right: 1.5rem;
+}
+nav > * {
+	margin-right: 1rem;
+}
+
+a:hover {
+	color: #afb2b3;
+}
+.left,
+.right {
+	display: flex;
+	align-items: center;
+}
+.right {
+	flex: 0.16;
+	justify-content: space-between;
+}
+.right > * {
+    cursor: pointer;
+}
+
+#logo {
+	color: white;
+	font-size: 3.4rem;
+	cursor: pointer;
+}
+
+#logo:hover {
+	color: #afb2b3;
+}
+
+#bell {
+	color: white;
+	font-size: 1.9rem;
+	font-weight: 100;
+}
+
+#bell:hover {
+	color: #afb2b3;
+}
+
+.bell {
+	position: relative;
+	width: max-content;
+}
+
+.bell::after {
+	content: "";
+	height: 0.9rem;
+	width: 0.9rem;
+	border-radius: 50%;
+	background-color: blue;
+	position: absolute;
+	top: 0;
+	right: 8%;
+	z-index: 100;
+}
+
+.header__top {
+	background-color: #24292e;
+    padding: 1.6rem 3rem;
+    margin-bottom: 4rem;
+}
+
+.new-repo {
+	color: grey;
+}
+
+.profile-img {
+	width: 2.3rem;
+	height: 2.3rem;
+	border-radius: 50%;
+	overflow: hidden;
+	margin-right: 4px;
+}
+
+.profile-img img {
+	width: 100%;
+	height: 100%;
+}
+
+.profile {
+	display: flex;
+	align-items: center;
+}
+.fa-caret-down{
+    font-size: 1.3rem;
+}
+i {
+	color: white;
+}
+
+i:hover {
+	color: #afb2b3;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+	font-size: 1.4rem;
+}
+
+.input input {
+	border: none;
+	background-color: transparent;
+	padding: 0.5rem 2rem;
+	outline-width: 0;
+	color: white;
+	width: 90%;
+}
+
+.input {
+	display: flex;
+	align-items: center;
+	border: 1px solid #444d56;
+	padding: 0.2rem 1rem;
+	border-radius: 5px;
+	width: 28rem;
+}
+.input input ~ div {
+	height: 2rem;
+	width: 10%;
+	border: 1px solid#444D56;
+	border-radius: 3px;
+	position: relative;
+}
+
+.input input ~ div::before {
+	content: "";
+	position: absolute;
+	background-color: #444d56;
+	height: 1rem;
+	width: 0.2rem;
+	top: 15%;
+	left: 50%;
+	transform: skewX(-30deg);
+}
+
+.header__bottom div i {
+	color: #24292e;
+	font-size: 1.8rem;
+	margin-right: 0.5rem;
+}
+
+.header__bottom div span {
+    font-size: 1.3rem;
+}
+
+.header__bottom {
+	display: flex;
+	justify-content: center;
+	padding-bottom: 2rem;
+	border-bottom: 1px solid lightgray;
+}
+
+.header__bottom > * {
+	margin-left: 2rem;
+	display: flex;
+	align-items: center;
+}
+
+#repo {
+    font-weight: 900;
+    position: relative;
+}
+
+#repo::before{
+    content: "";
+    width: 200%;
+    height: 2px;
+    position: absolute;
+    background-color: #EE806B;
+    bottom: -2.5rem;
+    transform: translateX(-17%);
+}
+
+#repo-count {
+    margin-left: 1rem;
+    padding: .5rem 1rem;
+    border-radius: 1.3rem;
+    background-color:#E8EAED;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding-top: 1.5rem;
+    background-color: #fff;
+  }
+
+.container {
+    padding: 0 12rem;
+    display: flex;
+    position: relative;
+}
+
+.container .profile-details {
+    flex: .25;
+    position: relative;
+}
+.container .repositories {
+    flex: .7;
+}
+
+
+.container .profile-details .profile-details__img{
+    height: 27rem;
+    width: 27rem;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    top: -3rem;
+    z-index: 100;
+    border: 1px solid lightgray;
+}
+
+#profile-image{
+    width: 100%;
+}
+
+.container .profile-details .status{
+    position: absolute;
+    z-index: 1000;
+    height: 3.5rem;
+    width: 3.5rem;
+    border-radius: 50%;
+    bottom: 7rem;
+    right:4rem;
+    background-color: white;
+    border: 1px solid lightgray;
+    display: grid;
+    place-content: center;
+
+}
+
+.container .profile-details .status i{
+    font-size: 1.7rem;
+    color: #24292e;
+}
+
+select {
+    border: none;
+    width: fit-content;
+    background-color: transparent;
+}
+
+.filter {
+    background: #F3F4F6;
+    display: flex;
+    align-items: center;
+    padding: 0 .8em;
+    border-radius: 5px;
+}
+
+.filter label {
+    font-size: 1.4rem;
+    color: gray;
+}
+
+.repositories__filter{
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem 0;
+}
+
+
+.repositories__filter input{
+    flex:.9;
+    padding: .5em 1em;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+}
+
+.repositories__filter button {
+    background-color: #4C974C;
+    border: none;
+    padding: .4em 1em;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+
+.repositories__filter button  i{
+    margin-right: .7rem;
+}

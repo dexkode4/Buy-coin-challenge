@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>GitHub Profile | dexkode</title>
+		<link rel="stylesheet" href="style.css" />
+		<script
+			src="https://kit.fontawesome.com/c7ad0bff77.js"
+			crossorigin="anonymous"
+		></script>
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700;900&display=swap"
+			rel="stylesheet"
+		/>
+
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="fontawesome-5-pro/css/all.css"
+		/>
+	</head>
+	<body>
+		<div class="header">
+			<div class="header__top">
+				<div class="left">
+					<i class="fab fa-github" id="logo"></i>
+					<div class="input">
+						<input type="text" placeholder="Search or jump to..." />
+						<div></div>
+					</div>
+					<nav>
+						<a href="#">Pull requests</a>
+						<a href="#">Issues</a>
+						<a href="#">Marketplace</a>
+						<a href="#">Explore</a>
+					</nav>
+				</div>
+				<div class="right">
+					<div class="bell"><i class="far fa-bell" id="bell"></i></div>
+					<div class="new-repo">
+						<i class="fas fa-plus"></i>
+						<i class="fas fa-caret-down"></i>
+					</div>
+					<div class="profile">
+						<div class="profile-img">
+							<img
+								src="https://dyl80ryjxr1ke.cloudfront.net/external_assets/hero_examples/hair_beach_v1785392215/result.jpeg"
+								alt="avatar"
+								id="avatar"
+							/>
+						</div>
+
+						<i class="fas fa-caret-down"></i>
+					</div>
+				</div>
+			</div>
+
+			<div class="header__bottom" id="navbar">
+				<div>
+					<i class="fal fa-book-open"></i>
+					<span>Overview</span>
+				</div>
+				<div>
+					<i class="fal fa-book"></i>
+					<span id="repo">Repositories</span>
+					<span id="repo-count">46</span>
+				</div>
+				<div>
+					<i class="fal fa-file-chart-line"></i>
+					<span>Projects</span>
+				</div>
+				<div>
+					<i class="far fa-cube"></i>
+					<span>Packages</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="profile-details">
+				<div class="status">
+					<i class="fal fa-smile"></i>
+				</div>
+
+				<div class="profile-details__img">
+					<img src="" alt="profile-image" id="profile-image" />
+                </div>
+                <p id="username">dexkode4</p>
+			</div>
+			<div class="repositories">
+				<div class="repositories__filter">
+					<input type="text" placeholder="Find a repository" />
+					<div class="filter">
+						<label for="cars">Type:</label>
+						<select name="type" id="type">
+							<option value="all">All</option>
+							<option value="public">Public</option>
+							<option value="private">Private</option>
+							<option value="sources">Audi</option>
+							<option value="forks">Forks</option>
+							<option value="archived">Archived</option>
+							<option value="mirrors">Mirrors</option>
+						</select>
+					</div>
+					<div class="filter">
+						<label for="language">Language:</label>
+						<select name="language" id="language">
+                            <option value="all">ALL</option>
+							<option value="html">HTML</option>
+							<option value="css">Css</option>
+							<option value="javascript">Javascript</option>
+							<option value="ruby">Ruby</option>
+							<option value="c">Forks</option>
+							<option value="java">Java</option>
+							<option value="python">Python</option>
+                        </select>
+                    </div>
+                    <button><i class="fal fa-book"></i>New</button>
+				</div>
+			</div>
+		</div>
+
+		<script src="/script.js"></script>
+	</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "GithubProfile",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:dexkode4/github-profile.git",
+  "author": "dexkode4 <dexkode4@gmail.com>",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "dotenv": "^8.2.0",
+    "node-fetch": "^2.6.1"
+  }
+}
