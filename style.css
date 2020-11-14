@@ -133,6 +133,9 @@ a {
 	width: 90%;
 }
 
+.input input::placeholder{
+	color:#B2B5B6;
+}
 .input {
 	display: flex;
 	align-items: center;
@@ -142,7 +145,7 @@ a {
 	width: 28rem;
 }
 .input input ~ div {
-	height: 2rem;
+	height: 2.2rem;
 	width: 10%;
 	border: 1px solid#444D56;
 	border-radius: 3px;
@@ -152,10 +155,10 @@ a {
 .input input ~ div::before {
 	content: "";
 	position: absolute;
-	background-color: #444d56;
+	background-color: #8A8E90;
 	height: 1rem;
 	width: 0.2rem;
-	top: 15%;
+	top: 18%;
 	left: 50%;
 	transform: skewX(-30deg);
 }
@@ -175,7 +178,6 @@ a {
 	justify-content: center;
 	padding-bottom: 2rem;
 	border-bottom: 1px solid lightgray;
-	margin-left: -18rem;
 	display: relative;
 	z-index: 50;
 }
@@ -238,7 +240,7 @@ a {
     position: relative;
 }
 .container .repositories {
-    flex: .73;
+    flex: .7;
 }
 
 .profile-details button {
@@ -254,8 +256,8 @@ a {
 
 
 .container .profile-details .profile-details__img{
-    height: 27rem;
-    width: 27rem;
+    height: 28rem;
+    width: 28rem;
     border-radius: 50%;
     overflow: hidden;
     position: relative;
@@ -271,17 +273,47 @@ a {
 .container .profile-details .status{
     position: absolute;
     z-index: 1000;
-    height: 3.5rem;
-    width: 3.5rem;
+    height: 3.55rem;
+    width: 3.55rem;
     border-radius: 50%;
-    bottom: 40%;
-    right:15%;
+    top: 8%;
+    right:10%;
     background-color: white;
     border: 1px solid lightgray;
     display: grid;
-    place-content: center;
+	place-content: center;
+	z-index: 1000;
+	transition: all .2s ease-in;
+	cursor: pointer;
 
 }
+
+.container .profile-details .status:hover{
+	width: max-content;
+	border-radius: 2rem;
+	transform-origin: right;
+	padding: 0 1em;
+	display: flex;
+	align-items: center;
+	color: #0466D6;
+	transform-origin: 50% 85%;
+}
+
+
+
+#set-status {
+	font-size: 0;
+	transition: all .2s ease-in;
+}
+.container .profile-details .status:hover > i{
+	margin-right: 1rem;
+	color: #0466D6;
+}
+
+.container .profile-details .status:hover > #set-status {
+	font-size: 1.3rem;
+}
+
 
 .container .profile-details .status i{
     font-size: 1.7rem;
@@ -328,12 +360,15 @@ select {
     font-size: 1.5rem;
     border-radius: 5px;
     color: white;
-    cursor: pointer;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
 }
 
 
-.repositories__filter button  i{
-    margin-right: .7rem;
+.repositories__filter button  svg{
+	margin-right: .5rem;
+	fill: white;
 }
 
 #username {
@@ -392,7 +427,14 @@ select {
 	color: #0466D6;
 	font-size: 2rem;
 	margin-bottom: 1.5rem;
+	cursor: pointer;
 }
+
+.item .item__details  h2:hover {
+	text-decoration: underline;
+}
+
+
 .item .item__details  div {
 	font-size: 1.2rem;
 	color: #586069;
