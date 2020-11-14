@@ -97,6 +97,7 @@ a:hover {
 	margin-right: 4px;
 }
 
+
 .profile-img img {
 	width: 100%;
 	height: 100%;
@@ -159,8 +160,8 @@ a {
 	transform: skewX(-30deg);
 }
 
-.header__bottom div i {
-	color: #24292e;
+.header__bottom div svg {
+	fill: #959DA5;
 	font-size: 1.8rem;
 	margin-right: 0.5rem;
 }
@@ -174,6 +175,9 @@ a {
 	justify-content: center;
 	padding-bottom: 2rem;
 	border-bottom: 1px solid lightgray;
+	margin-left: -18rem;
+	display: relative;
+	z-index: 50;
 }
 
 .header__bottom > * {
@@ -182,19 +186,29 @@ a {
 	align-items: center;
 }
 
+#repo-svg {
+	fill: #24292e;
+}
+
 #repo {
     font-weight: 900;
     position: relative;
 }
 
+
+#repo ~ svg {
+    fill: black;
+    position: relative;
+}
+
 #repo::before{
     content: "";
-    width: 200%;
+    width: 230%;
     height: 2px;
     position: absolute;
     background-color: #EE806B;
     bottom: -2.5rem;
-    transform: translateX(-17%);
+    transform: translateX(-25%);
 }
 
 #repo-count {
@@ -215,7 +229,8 @@ a {
 .container {
     padding: 0 12rem;
     display: flex;
-    position: relative;
+	position: relative;
+	justify-content: space-between;
 }
 
 .container .profile-details {
@@ -223,7 +238,18 @@ a {
     position: relative;
 }
 .container .repositories {
-    flex: .7;
+    flex: .73;
+}
+
+.profile-details button {
+	border: 1px solid lightgray;
+	padding: .5em 3em;
+	font-size: 1.4rem;
+	width: 100%;
+	border-radius: 5px;
+	cursor: pointer;
+	margin: 1rem 0;
+	background-color: #F3F4F6;
 }
 
 
@@ -248,8 +274,8 @@ a {
     height: 3.5rem;
     width: 3.5rem;
     border-radius: 50%;
-    bottom: 7rem;
-    right:4rem;
+    bottom: 40%;
+    right:15%;
     background-color: white;
     border: 1px solid lightgray;
     display: grid;
@@ -308,4 +334,99 @@ select {
 
 .repositories__filter button  i{
     margin-right: .7rem;
+}
+
+#username {
+	font-size: 1.8rem;
+	color: #80868D;
+}
+
+#bio {
+	font-size: 1.5rem;
+	margin-top: 1rem;
+}
+
+.popularity{
+	display: flex;
+	align-items: center;
+}
+
+.popularity div {
+	display: flex;
+	align-items: center;
+	margin-right: 1rem;
+}
+
+.popularity div span[class="follow"] {
+	font-size: 1.3rem;
+	color: #80868D;
+}
+.popularity svg {
+	margin-right: .8rem;
+	fill: #80868D;
+}
+
+#followers, #following {
+	margin-right: .5rem;
+}
+
+#followers, #following , #star{
+	font-size: 1.4rem;
+	font-weight: 500;
+}
+
+.repositories__list {
+	border-top: 1px solid #E1E4E8;
+	margin-top: 3rem;
+}
+
+.item {
+	border-bottom: 1px solid #E1E4E8;
+	display: flex;
+	justify-content: space-between;
+	padding: 3rem 0;
+
+}
+
+.item .item__details  h2 {
+	color: #0466D6;
+	font-size: 2rem;
+	margin-bottom: 1.5rem;
+}
+.item .item__details  div {
+	font-size: 1.2rem;
+	color: #586069;
+	font-weight: 400;
+	display: flex;
+	align-items: center;
+}
+
+.item .item__details  div > * {
+	margin-right: 1rem;
+}
+
+#lang-color {
+	height: 1.3rem;
+	width: 1.3rem;
+	background-color: purple;
+	margin-right: 1rem;
+	border-radius: 50%;
+}
+
+.item .item__starred button {
+	border: 1px solid lightgray;
+	padding: .5em 1em;
+	font-size: 1.4rem;
+	border-radius: 5px;
+	cursor: pointer;
+	margin: 1rem 0;
+	background-color: #F3F4F6;
+	display: flex;
+	align-items: center;
+}
+
+
+.item .item__starred button svg {
+	fill: #586069;
+	margin-right: .5rem;
 }

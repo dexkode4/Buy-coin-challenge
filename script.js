@@ -1,5 +1,5 @@
 const username = "dexkode4";
-const token = "2417ba3d2a643e25738439f7f14fa23d01e5617a";
+const token = "e12b14f69f0d68be353b3362a2aacb979bfac6b3";
 
 
 async function fetchGraphQL(text, variables) {
@@ -30,7 +30,15 @@ query {
      avatarUrl
      login
      bio
-     
+     following{
+      totalCount
+    }
+    followers {
+      totalCount
+    }
+    starredRepositories{
+      totalCount
+    }
      repositories(first: 20) {
          nodes{
            name
@@ -66,12 +74,16 @@ const getMyGithubData = () => {
 
 fetchGraphQL(query).then(res => {
     console.log(res.data);
-    const { avatarUrl, repositories } = res.data.user;
+    const { avatarUrl, repositories , bio , followers, following ,starredRepositories } = res.data.user;
   
     let repoCount = document.getElementById('repo-count');
     // set avatar img
     document.getElementById('avatar').src = avatarUrl;
     document.getElementById('profile-image').src = avatarUrl;
+    document.getElementById('bio').textContent = bio;
+    document.getElementById("followers").textContent = followers.totalCount;
+    document.getElementById("following").textContent = following.totalCount;
+    document.getElementById("star").textContent = starredRepositories.totalCount;
     // set repo count
     repoCount.textContent = repositories.nodes.length;
 
@@ -80,8 +92,9 @@ fetchGraphQL(query).then(res => {
 
 window.onscroll = function() {myFunction()};
 
-var navbar = document.getElementById("navbar");
-var sticky = navbar.offsetTop;
+let navbar = document.getElementById("navbar");
+
+let sticky = navbar.offsetTop;
 
 function myFunction() {
   if (window.pageYOffset >= sticky) {
