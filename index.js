@@ -1,5 +1,8 @@
 const username = "dexkode4";
-const token = "ddbd3fab70b5aa9475b616246bbaf129f794fceb";
+const token = "6c248e3ade2cdc1b853184a800bd66c355ee30b3";
+
+// const token = "8c9f016fd034365e33d863a9fe75e5227fed96f1";
+// const username = "SimonJulius"
 
 function getLastUpdated(lastUpdated) {
   const MONTHS = {
@@ -25,26 +28,22 @@ function getLastUpdated(lastUpdated) {
   const seconds = Math.round(diffTime / 1000);
 
   if (seconds < 60) {
-    console.log(`${seconds} seconds ago`);
-    return `Updated on ${seconds} seconds ago`;
+    return `Updated ${seconds} seconds ago`;
   } else {
     let minutes = Math.round(seconds / 60);
 
     if (minutes < 60) {
-      console.log(`${minutes} minutes ago`);
-      return `Updated on ${minutes} minutes ago`;
+      return `Updated ${minutes} minutes ago`;
     } else {
       let hours = Math.round(minutes / 60);
 
       if (hours < 24) {
-        console.log(`${hours} hours ago`);
-        return `Updated on ${hours} hours ago`;
+        return `Updated ${hours} hours ago`;
       } else {
         let days = Math.round(hours / 24);
 
         if (days < 30) {
-          console.log(`${days} days ago`);
-          return `Updated on ${days} days ago`;
+          return `Updated ${days} days ago`;
         } else {
           if (days < 365) {
             let monthIdx = date1.getMonth();
@@ -92,16 +91,18 @@ query {
     starredRepositories{
       totalCount
     }
-     repositories(first: 20) {
+     repositories(first: 20 , orderBy: {field: UPDATED_AT , direction: DESC}) {
        totalCount
          nodes{
            name
            stargazerCount
            updatedAt
-              languages(first:1){
+              languages(first:5){
+                edges {
+                  size  
+                }
              nodes{
                color
-               id
                name
              }
            }
@@ -139,11 +140,22 @@ fetchGraphQL(query)
 
     let repoCount = document.getElementById("repo-count");
 
-    repoCount.textContent = repositories.totalCount;
+    let avatarCollection = document.querySelectorAll(".avatar");
+    avatarCollection.forEach(avatar => {
+     avatar.src = avatarUrl;
+    })
 
-    document.getElementById("username").textContent = login;
-    document.getElementById("avatar").src = avatarUrl;
-    document.getElementById("profile-image").src = avatarUrl;
+    let usernameCollection = document.querySelectorAll(".username");
+
+    usernameCollection.forEach(username => {
+      username.textContent = login
+    })
+
+    
+
+    repoCount.textContent = repositories.totalCount - 2;
+
+    // document.getElementById("username").textContent = login;
     document.getElementById("bio").textContent = bio;
     document.getElementById("followers").textContent = followers.totalCount;
     document.getElementById("following").textContent = following.totalCount;
@@ -162,6 +174,8 @@ fetchGraphQL(query)
       let updated = document.createElement("span");
       let starred = document.createElement("div");
       let starButton = document.createElement("button");
+
+
 
       starButton.innerHTML = `<svg class="octicon octicon-star text-gray-light" height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25zm0 2.445L6.615 5.5a.75.75 0 01-.564.41l-3.097.45 2.24 2.184a.75.75 0 01.216.664l-.528 3.084 2.769-1.456a.75.75 0 01.698 0l2.77 1.456-.53-3.084a.75.75 0 01.216-.664l2.24-2.183-3.096-.45a.75.75 0 01-.564-.41L8 2.694v.001z"></path></svg>
       star`;
@@ -182,9 +196,13 @@ fetchGraphQL(query)
       repoItemDetails.appendChild(repoLangAndLastUpdateInfo);
       starred.appendChild(starButton);
 
-      if (languages.nodes[0]) {
-        langLogo.style.background = languages.nodes[0].color;
-        lang.textContent = languages.nodes[0].name;
+      let sizeArray = languages.edges.map(size => size.size);
+
+      let indexOfMax = sizeArray.indexOf(Math.max(...sizeArray));
+
+      if (languages.nodes[indexOfMax]) {
+        langLogo.style.background = languages.nodes[indexOfMax].color;
+        lang.textContent = languages.nodes[indexOfMax].name;
       }
 
       repoTitle.textContent = name;
@@ -208,4 +226,16 @@ function myFunction() {
   } else {
     navbar.classList.remove("sticky");
   }
+}
+
+const hambuger = document.getElementById("hambuger");
+const mobileNavbar = document.getElementById("mobile-navbar");
+
+hambuger.addEventListener('click', () => {
+  mobileNavbar.classList.toggle("show");
+})
+
+window.onresize = function () {
+  // remove mobile navbar when screen width size hits 770px
+  window.innerWidth > 770 &&  mobileNavbar.classList.remove("show");
 }
