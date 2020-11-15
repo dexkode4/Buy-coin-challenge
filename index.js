@@ -1,8 +1,5 @@
 const username = "dexkode4";
-const token = "6c248e3ade2cdc1b853184a800bd66c355ee30b3";
-
-// const token = "8c9f016fd034365e33d863a9fe75e5227fed96f1";
-// const username = "SimonJulius"
+const token = "4ddfceaba8a6d859929c9bc7ff3f19cee06bc5b2";
 
 function getLastUpdated(lastUpdated) {
   const MONTHS = {
@@ -91,7 +88,7 @@ query {
     starredRepositories{
       totalCount
     }
-     repositories(first: 20 , orderBy: {field: UPDATED_AT , direction: DESC}) {
+     repositories(first: 20 , privacy: PUBLIC, orderBy: {field: UPDATED_AT , direction: DESC}) {
        totalCount
          nodes{
            name
@@ -142,7 +139,7 @@ fetchGraphQL(query)
 
     let avatarCollection = document.querySelectorAll(".avatar");
     avatarCollection.forEach(avatar => {
-     avatar.src = avatarUrl;
+      avatar.src = avatarUrl;
     })
 
     let usernameCollection = document.querySelectorAll(".username");
@@ -151,11 +148,10 @@ fetchGraphQL(query)
       username.textContent = login
     })
 
-    
 
-    repoCount.textContent = repositories.totalCount - 2;
 
-    // document.getElementById("username").textContent = login;
+    repoCount.textContent = repositories.totalCount;
+
     document.getElementById("bio").textContent = bio;
     document.getElementById("followers").textContent = followers.totalCount;
     document.getElementById("following").textContent = following.totalCount;
@@ -237,5 +233,5 @@ hambuger.addEventListener('click', () => {
 
 window.onresize = function () {
   // remove mobile navbar when screen width size hits 770px
-  window.innerWidth > 770 &&  mobileNavbar.classList.remove("show");
+  window.innerWidth > 770 && mobileNavbar.classList.remove("show");
 }
