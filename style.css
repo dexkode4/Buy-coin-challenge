@@ -721,6 +721,10 @@ select {
 		margin-top: 12rem;
 	}
 	.container {
-		padding: 0 2em;
+		padding: 0 1em;
+	}
+	.profile-details button,
+	.set-status__mobile {
+		width: 98%;
 	}
 }
