@@ -17,7 +17,6 @@ html {
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
-
 }
 
 .left > * {
@@ -189,7 +188,7 @@ a {
 }
 #display-name {
 	font-size: 2.5rem;
-	margin-bottom: .6rem;
+	margin-bottom: 0.6rem;
 }
 
 #repo-svg {
@@ -228,7 +227,7 @@ a {
 }
 
 .updatedAt {
-	word-spacing: .6rem;
+	word-spacing: 0.6rem;
 	display: flex;
 	align-items: flex-end;
 }
@@ -239,6 +238,40 @@ a {
 	width: 100%;
 	padding-top: 1.5rem;
 	background-color: #fff;
+}
+.user-image {
+	transition: all 0.2s ease;
+}
+.sticky-image {
+	position: fixed !important;
+	top: 2.2rem !important;
+	width: 3%;
+	padding-top: 1.5rem;
+	z-index: 1000;
+}
+.user-image.sticky-image > #user-status {
+	display: none;
+}
+
+#github_username {
+	display: none;
+	position: relative;
+	top: -5.5rem;
+	left: 5rem;
+	color: #000;
+	font-size: 1.5rem;
+}
+
+.user-image.sticky-image > #github_username {
+	display: block;
+}
+
+.sticky-username {
+	position: relative !important;
+	top: 0 !important;
+	left: 0 !important;
+	z-index: 1200;
+	color: #000;
 }
 
 .container {
@@ -303,6 +336,8 @@ a {
 	transition: all 0.2s ease-in;
 	cursor: pointer;
 }
+
+
 
 .container .profile-details .status:hover {
 	width: max-content;
@@ -517,8 +552,8 @@ select {
 	fill: #fff;
 }
 
-#hambuger:hover{
-	fill: #BEBFC1;
+#hambuger:hover {
+	fill: #bebfc1;
 }
 
 #mobile-navbar {
@@ -532,19 +567,17 @@ select {
 }
 #mobile-navbar .input {
 	width: 100%;
-	padding: .3em .5em;
+	padding: 0.3em 0.5em;
 	margin-bottom: 2rem;
 }
 
-
-#input-logo {
-	/* width: 3rem; */
-	/* float: left; */
+#navbar {
+	transition: all 0.1s ease;
 }
 
-.mobile-navbar__item{
+.mobile-navbar__item {
 	font-size: 2rem;
-	padding: .6em 0;
+	padding: 0.6em 0;
 	border-bottom: 1px solid #444d56;
 	font-weight: 400;
 	display: flex;
@@ -555,22 +588,20 @@ select {
 	display: block;
 }
 
-
-
-.mobile-navbar__item  svg {
+.mobile-navbar__item svg {
 	margin-right: 1rem;
 	fill: white;
 }
 
 .mobile-navbar__item .username {
 	position: relative;
-	left : 0;
+	left: 0;
 	top: 0;
 	color: #fff;
 	font-size: 1.5rem;
 }
 
-
+/* media queries */
 
 @media (max-width: 976px) {
 	html {
@@ -584,10 +615,7 @@ select {
 	}
 }
 
-
 @media (max-width: 770px) {
-
-	
 	#hambuger {
 		display: block;
 	}
@@ -684,9 +712,8 @@ select {
 
 	#bell {
 		font-size: 2.4rem;
-		margin-bottom: .3rem;
+		margin-bottom: 0.3rem;
 	}
-	
 }
 
 @media (max-width: 475px) {

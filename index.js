@@ -1,5 +1,5 @@
 const username = "dexkode4";
-const token = "316c8171203488be3f998f7b9421751a27585df4";
+const token = "97260f83dff6db8bc11e190717dc1f9c5d68a320";
 
 function getLastUpdated(lastUpdated) {
   const MONTHS = {
@@ -158,8 +158,8 @@ fetchGraphQL(query)
     usernameCollection.forEach(username => {
       username.textContent = login
     })
-    
-   
+
+
 
     repoCount.textContent = repositories.totalCount;
 
@@ -170,13 +170,11 @@ fetchGraphQL(query)
     document.getElementById("star").textContent =
       starredRepositories.totalCount;
 
-      console.log(displayName);
 
     let repoList = document.getElementsByClassName("repositories__list")[0];
 
 
-    repositories.nodes.map(({ name, languages, updatedAt, forkCount, stargazerCount , primaryLanguage, description, parent}) => {
-      console.log(parent);
+    repositories.nodes.map(({ name, updatedAt, stargazerCount, primaryLanguage, description, parent }) => {
       let repoItem = document.createElement("div");
       let repoItemDetails = document.createElement("div");
       let repoTitle = document.createElement("h2");
@@ -204,7 +202,7 @@ fetchGraphQL(query)
       lang.setAttribute("class", "lang");
       updated.setAttribute("class", "updatedAt");
       starred.setAttribute("class", "item__starred");
-      repoLangAndLastUpdateInfo.setAttribute("class","repoLangAndLastUpdateInfo")
+      repoLangAndLastUpdateInfo.setAttribute("class", "repoLangAndLastUpdateInfo")
 
       repoItem.appendChild(repoItemDetails);
       repoItemDetails.appendChild(repoTitle);
@@ -217,33 +215,48 @@ fetchGraphQL(query)
       starred.appendChild(starButton);
 
 
-      if(primaryLanguage){
-        const {name, color} = primaryLanguage;
+      if (primaryLanguage) {
+        const { name, color } = primaryLanguage;
         langLogo.style.background = color;
         lang.textContent = name;
       }
 
-      
+
       repoDescription.textContent = description;
       repoTitle.textContent = name;
-      updated.append(stargazerCount ? starIcon : "", stargazerCount ? stargazerCount : "", " ",parent === null ? "": forkIcon, parent ? parent.forkCount : "" ," ",  getLastUpdated(updatedAt))
+      updated.append(stargazerCount ? starIcon : "", stargazerCount ? stargazerCount : "", " ", parent === null ? "" : forkIcon, parent ? parent.forkCount : "", " ", getLastUpdated(updatedAt))
       repoList.append(repoItem);
     });
   })
   .catch(console.error);
 
+
+
 window.onscroll = function () {
-  myFunction();
+  stick();
+  stickyImage();
 };
 
 let navbar = document.getElementById("navbar");
+let userDisplay = document.querySelector(".user-image");
 
 let sticky = navbar.offsetTop;
 
-function myFunction() {
+function stickyImage() {
+  if (window.innerWidth > 770 && window.pageYOffset >= (sticky * 3.5)) {
+    userDisplay.classList.add("sticky-image");
+
+  }
+  else {
+    userDisplay.classList.remove("sticky-image");
+  }
+}
+
+function stick() {
   if (window.pageYOffset >= sticky) {
     navbar.classList.add("sticky");
-  } else {
+  }
+  else {
     navbar.classList.remove("sticky");
   }
 }
