@@ -1,5 +1,5 @@
 const username = "dexkode4";
-const token = "4ddfceaba8a6d859929c9bc7ff3f19cee06bc5b2";
+const token = "316c8171203488be3f998f7b9421751a27585df4";
 
 function getLastUpdated(lastUpdated) {
   const MONTHS = {
@@ -79,6 +79,7 @@ query {
      avatarUrl
      login
      bio
+     name
      following{
       totalCount
     }
@@ -94,6 +95,12 @@ query {
            name
            stargazerCount
            updatedAt
+           forkCount
+           description
+           primaryLanguage {
+            name
+            color
+          }
               languages(first:5){
                 edges {
                   size  
@@ -105,6 +112,9 @@ query {
            }
            
            forkCount
+           parent {
+            forkCount
+          }
            
            }
          }
@@ -121,7 +131,6 @@ const opts = {
   body: JSON.stringify({ query: query }),
 };
 
-const getMyGithubData = () => { };
 
 fetchGraphQL(query)
   .then(res => {
@@ -133,34 +142,41 @@ fetchGraphQL(query)
       following,
       starredRepositories,
       login,
+      name
     } = res.data.user;
 
-    let repoCount = document.getElementById("repo-count");
 
+    let repoCount = document.getElementById("repo-count");
     let avatarCollection = document.querySelectorAll(".avatar");
     avatarCollection.forEach(avatar => {
       avatar.src = avatarUrl;
     })
 
     let usernameCollection = document.querySelectorAll(".username");
+    let displayName = document.getElementById("display-name");
 
     usernameCollection.forEach(username => {
       username.textContent = login
     })
-
-
+    
+   
 
     repoCount.textContent = repositories.totalCount;
 
+    document.getElementById("display-name").innerText = name;
     document.getElementById("bio").textContent = bio;
     document.getElementById("followers").textContent = followers.totalCount;
     document.getElementById("following").textContent = following.totalCount;
     document.getElementById("star").textContent =
       starredRepositories.totalCount;
 
+      console.log(displayName);
+
     let repoList = document.getElementsByClassName("repositories__list")[0];
 
-    repositories.nodes.map(({ name, languages, updatedAt }) => {
+
+    repositories.nodes.map(({ name, languages, updatedAt, forkCount, stargazerCount , primaryLanguage, description, parent}) => {
+      console.log(parent);
       let repoItem = document.createElement("div");
       let repoItemDetails = document.createElement("div");
       let repoTitle = document.createElement("h2");
@@ -170,8 +186,14 @@ fetchGraphQL(query)
       let updated = document.createElement("span");
       let starred = document.createElement("div");
       let starButton = document.createElement("button");
+      let repoDescription = document.createElement("p");
+      let starIcon = document.createElement("img");
+      let forkIcon = document.createElement("img");
 
+      forkIcon.style.marginLeft = "1rem";
 
+      starIcon.src = 'assets/star.svg';
+      forkIcon.src = "assets/fork.svg"
 
       starButton.innerHTML = `<svg class="octicon octicon-star text-gray-light" height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25zm0 2.445L6.615 5.5a.75.75 0 01-.564.41l-3.097.45 2.24 2.184a.75.75 0 01.216.664l-.528 3.084 2.769-1.456a.75.75 0 01.698 0l2.77 1.456-.53-3.084a.75.75 0 01.216-.664l2.24-2.183-3.096-.45a.75.75 0 01-.564-.41L8 2.694v.001z"></path></svg>
       star`;
@@ -182,27 +204,29 @@ fetchGraphQL(query)
       lang.setAttribute("class", "lang");
       updated.setAttribute("class", "updatedAt");
       starred.setAttribute("class", "item__starred");
+      repoLangAndLastUpdateInfo.setAttribute("class","repoLangAndLastUpdateInfo")
 
       repoItem.appendChild(repoItemDetails);
       repoItemDetails.appendChild(repoTitle);
       repoItem.appendChild(starred);
       repoLangAndLastUpdateInfo.appendChild(langLogo);
       repoLangAndLastUpdateInfo.appendChild(lang);
+      repoItemDetails.appendChild(repoDescription);
       repoLangAndLastUpdateInfo.appendChild(updated);
       repoItemDetails.appendChild(repoLangAndLastUpdateInfo);
       starred.appendChild(starButton);
 
-      let sizeArray = languages.edges.map(size => size.size);
 
-      let indexOfMax = sizeArray.indexOf(Math.max(...sizeArray));
-
-      if (languages.nodes[indexOfMax]) {
-        langLogo.style.background = languages.nodes[indexOfMax].color;
-        lang.textContent = languages.nodes[indexOfMax].name;
+      if(primaryLanguage){
+        const {name, color} = primaryLanguage;
+        langLogo.style.background = color;
+        lang.textContent = name;
       }
 
+      
+      repoDescription.textContent = description;
       repoTitle.textContent = name;
-      updated.innerText = getLastUpdated(updatedAt);
+      updated.append(stargazerCount ? starIcon : "", stargazerCount ? stargazerCount : "", " ",parent === null ? "": forkIcon, parent ? parent.forkCount : "" ," ",  getLastUpdated(updatedAt))
       repoList.append(repoItem);
     });
   })
