@@ -337,17 +337,14 @@ a {
 	cursor: pointer;
 }
 
-
-
 .container .profile-details .status:hover {
 	width: max-content;
 	border-radius: 2rem;
-	transform-origin: right;
 	padding: 0 1em;
 	display: flex;
 	align-items: center;
 	color: #0466d6;
-	transform-origin: 50% 85%;
+	transform-origin: right;
 }
 
 #set-status {
