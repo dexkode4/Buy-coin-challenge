@@ -1,5 +1,5 @@
-const username = "dexkode4";
-const token = "5f8d756b24ed2b08f82d00b3a87e717f12170def";
+const username = "your username";
+const token = "Your token";
 
 function getLastUpdated(lastUpdated) {
   const MONTHS = {
