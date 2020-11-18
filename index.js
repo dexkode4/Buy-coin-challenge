@@ -172,7 +172,7 @@ fetchGraphQL(query)
 
 
     let repoList = document.getElementsByClassName("repositories__list")[0];
-
+    console.log("updatedat: ", repositories.nodes[0].updatedAt)
 
     repositories.nodes.map(({ name, updatedAt, stargazerCount, primaryLanguage, description, parent }) => {
       let repoItem = document.createElement("div");

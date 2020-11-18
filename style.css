@@ -72,7 +72,7 @@ a:hover {
 	height: 0.9rem;
 	width: 0.9rem;
 	border-radius: 50%;
-	background-image: linear-gradient(#54a3ff,#006eed);
+	background-image: linear-gradient(#54a3ff, #006eed);
 	position: absolute;
 	top: 0;
 	right: 8%;
@@ -326,14 +326,15 @@ a {
 	width: 3.55rem;
 	border-radius: 50%;
 	top: 55%;
-	right: 2.5rem;
+	left: 80%;
 	background-color: white;
 	border: 1px solid lightgray;
 	display: grid;
 	place-content: center;
 	z-index: 1000;
-	transition: all 0.2s ease-in;
 	cursor: pointer;
+	display: flex;
+	align-items: center;
 }
 
 .container .profile-details .status:hover {
@@ -343,12 +344,13 @@ a {
 	display: flex;
 	align-items: center;
 	color: #0466d6;
-	transform-origin: right;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);
 }
 
 #set-status {
-	font-size: 0;
-	transition: all 0.2s ease-in;
+	display: none;
+	font-size: 1.2rem;
+	font-weight: 300;
 }
 .container .profile-details .status:hover > i {
 	margin-right: 1rem;
@@ -356,7 +358,7 @@ a {
 }
 
 .container .profile-details .status:hover > #set-status {
-	font-size: 1.3rem;
+	display: inline-block;
 }
 
 .container .profile-details .status i {
